@@ -9,9 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@tanstack/react-query": "^5.90.12",
+    "antd": "^5.29.1",
+    "cloudinary": "^2.8.0",
     "next": "16.0.8",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "react-intersection-observer": "^9.16.0",
+    "sharp": "^0.33.5",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -20,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
+    "prisma": "^5.22.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
