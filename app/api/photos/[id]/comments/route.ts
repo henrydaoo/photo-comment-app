@@ -59,7 +59,7 @@ export async function POST(
 }
 
 const commentsQuerySchema = z.object({
-  cursor: z.string().optional(),
+  cursor: z.string().nullable().optional(),
   limit: z.coerce.number().min(1).max(100).default(20),
 });
 
@@ -72,7 +72,7 @@ export async function GET(
     const { searchParams } = new URL(request.url);
     
     const validationResult = commentsQuerySchema.safeParse({
-      cursor: searchParams.get('cursor'),
+      cursor: searchParams.get('cursor') || undefined,
       limit: searchParams.get('limit'),
     });
 

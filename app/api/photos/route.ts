@@ -5,7 +5,7 @@ import { z } from 'zod';
 import sharp from 'sharp';
 
 const photosQuerySchema = z.object({
-  cursor: z.string().optional(),
+  cursor: z.string().nullable().optional(),
   limit: z.coerce.number().min(1).max(50).default(12),
   sortBy: z.enum(['createdAt', 'commentCount']).default('createdAt'),
   order: z.enum(['asc', 'desc']).default('desc'),
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     
     const validationResult = photosQuerySchema.safeParse({
-      cursor: searchParams.get('cursor'),
+      cursor: searchParams.get('cursor') || undefined,
       limit: searchParams.get('limit'),
       sortBy: searchParams.get('sortBy'),
       order: searchParams.get('order'),

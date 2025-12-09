@@ -23,7 +23,9 @@ export default function PhotoGallery() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <Spin size="large" tip="Loading photos..." />
+        <Spin size="large" tip="Loading photos...">
+          <div className="h-20" />
+        </Spin>
       </div>
     );
   }
@@ -68,7 +70,11 @@ export default function PhotoGallery() {
       </Row>
 
       <div ref={ref} className="flex justify-center py-8">
-        {isFetchingNextPage && <Spin tip="Loading more photos..." />}
+        {isFetchingNextPage && (
+          <Spin tip="Loading more photos...">
+            <div className="h-10" />
+          </Spin>
+        )}
         {!hasNextPage && photos.length > 0 && (
           <p className="text-gray-400 text-sm">No more photos to load</p>
         )}

@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, Typography, Space, Divider } from 'antd';
-import { MessageOutlined } from '@ant-design/icons';
+import { Card, Avatar, Typography, Space, Divider } from 'antd';
+import { MessageOutlined, UserOutlined } from '@ant-design/icons';
 import Image from 'next/image';
 import type { Photo } from '@/hooks/usePhotos';
 import CommentSection from './CommentSection';
@@ -33,7 +33,7 @@ export default function PhotoCard({ photo }: PhotoCardProps) {
   return (
     <Card
       hoverable
-      className="h-full"
+      className="h-full overflow-hidden"
       styles={{
         body: { padding: 0 },
       }}

@@ -1,124 +1,49 @@
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
+/* Override Tailwind's base reset for better Ant Design compatibility */
 @layer base {
   button {
-    background-color: initial;
-    background-image: initial;
+    background-color: transparent;
+    background-image: none;
+    font-weight: inherit;
   }
   
   input {
-    line-height: initial;
+    line-height: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
   }
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Ant Design overrides */
+@layer components {
+  .ant-layout {
+    background: transparent !important;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  .ant-layout-header {
+    padding: 16px 0 !important;
+    height: auto !important;
+    line-height: normal !important;
+  }
+
+  .ant-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .ant-upload-drag:hover {
+    border-color: #1890ff !important;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
+/* Custom utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-.ant-layout {
-  background: transparent;
-}
-
-.ant-layout-header {
-  padding: 0 !important;
-  height: auto !important;
-  line-height: normal !important;
-  background: #ffffff;
-}
-
-.ant-layout-header > div {
-  padding: 16px 0;
-}
-
-.ant-layout-content {
-  min-height: calc(100vh - 64px - 69px);
-}
-
-.ant-layout-footer {
-  padding: 24px 50px;
-}
-
-.ant-upload-drag {
-  border: 2px dashed #d9d9d9 !important;
-  background: #fafafa;
-  transition: border-color 0.3s;
-}
-
-.ant-upload-drag:hover {
-  border-color: #1890ff !important;
-}
-
-.ant-upload-drag-icon {
-  color: #1890ff;
-}
-
-.ant-card {
-  border-radius: 8px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 
-              0 1px 6px -1px rgba(0, 0, 0, 0.02), 
-              0 2px 4px 0 rgba(0, 0, 0, 0.02);
-  transition: box-shadow 0.3s;
-}
-
-.ant-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.ant-btn-primary {
-  background-color: #1890ff;
-  border-color: #1890ff;
-}
-
-.ant-btn-primary:hover {
-  background-color: #40a9ff;
-  border-color: #40a9ff;
-}
-
-.ant-input,
-.ant-input-textarea textarea {
-  border-radius: 6px;
-}
-
-.ant-input:focus,
-.ant-input-textarea textarea:focus {
-  border-color: #40a9ff;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

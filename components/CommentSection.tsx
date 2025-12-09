@@ -92,6 +92,7 @@ export default function CommentSection({ photo }: CommentSectionProps) {
         />
         <TextArea
           placeholder="Add a comment..."
+          className='mb-4'
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
           onPressEnter={(e) => {
