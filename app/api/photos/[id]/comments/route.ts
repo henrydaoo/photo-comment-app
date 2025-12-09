@@ -9,9 +9,10 @@ const commentSchema = z.object({
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     
     const validationResult = commentSchema.safeParse(body);
@@ -27,7 +28,7 @@ export async function POST(
 
     const photo = await prisma.photo.findUnique({
       where: {
-        id: params.id,
+        id: id,
         deletedAt: null,
       },
     });
@@ -43,7 +44,7 @@ export async function POST(
       data: {
         content,
         authorName: authorName || 'Anonymous',
-        photoId: params.id,
+        photoId: id,
       },
     });
 
@@ -64,9 +65,10 @@ const commentsQuerySchema = z.object({
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const { searchParams } = new URL(request.url);
     
     const validationResult = commentsQuerySchema.safeParse({
@@ -85,7 +87,7 @@ export async function GET(
 
     const photo = await prisma.photo.findUnique({
       where: {
-        id: params.id,
+        id: id,
         deletedAt: null,
       },
     });
@@ -104,7 +106,7 @@ export async function GET(
         cursor: { id: cursor },
       }),
       where: {
-        photoId: params.id,
+        photoId: id,
         deletedAt: null,
       },
       orderBy: {

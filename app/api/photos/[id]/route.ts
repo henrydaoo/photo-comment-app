@@ -3,12 +3,13 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const photo = await prisma.photo.findUnique({
       where: {
-        id: params.id,
+        id: id,
         deletedAt: null,
       },
       include: {
@@ -45,11 +46,12 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const existingPhoto = await prisma.photo.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!existingPhoto || existingPhoto.deletedAt) {
@@ -60,7 +62,7 @@ export async function DELETE(
     }
 
     await prisma.photo.update({
-      where: { id: params.id },
+      where: { id: id },
       data: { deletedAt: new Date() },
     });
 
